@@ -7,7 +7,7 @@ const RecoveryPassword = db.define('recovery_passwords',{
         type: DataTypes.UUID,
         primaryKey: true
     },
-    userId : {
+    userId:{
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -18,7 +18,7 @@ const RecoveryPassword = db.define('recovery_passwords',{
     used: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
-    }
+    }   
 })
 
 module.exports = RecoveryPassword

@@ -1,5 +1,6 @@
 const userControllers = require('./users.controllers')
-
+const mailer = require('../utils/mailer')
+const config=require('../../config')
 //? Get, Post
 
 const getAllUsers = (req, res) => {
@@ -39,9 +40,18 @@ const getMyUser = (req, res) => {
 }
 
 const postUser = (req, res) => {
-    const {firstName, lastName, email, password, gender, birthday} = req.body
-    userControllers.createUser({firstName, lastName, email, password,gender, birthday})
-        .then((data) => {
+    const {firstName, lastName, email, password, gender, birthday,country,phone,nickName,profileImage} = req.body
+    
+    userControllers.createUser({firstName, lastName, email, password,gender, birthday,country,phone,nickName,profileImage})
+        .then(async (data) => {
+            await mailer.sendMail({
+                  from:config.api.mail_name,
+                  to: data.email,
+                  subject:`Bienvenido ${data.firstName}` ,
+                  html:`<h1>Hola ${data.firstName, data.lastName}, un gusto</h1>`,
+                  text:"Bienvenido a Node un gusto verte por aqui"
+
+            })
             res.status(201).json(data)
         })
         .catch((err) => {
@@ -49,6 +59,7 @@ const postUser = (req, res) => {
                 firstName: 'String',
                 lastName: 'String',
                 email: 'example@example.com',
+                nickName:'string',
                 password: 'String',
                 gender: 'String',
                 birthday: 'YYYY/MM/DD'
@@ -59,9 +70,9 @@ const postUser = (req, res) => {
 //? Solo admins pueden ejecutarlo
 const patchUser = (req, res) => {
     const id = req.params.id 
-    const {firstName, lastName, email, gender, birthday, role, status} = req.body
+    const {firstName, lastName, email, gender, birthday,country,phone,nickName,profileImage, role, status} = req.body
 
-    userControllers.updateUser(id, {firstName, lastName, email, gender, birthday, role, status})
+    userControllers.updateUser(id, {firstName, lastName, email, gender, birthday,country,phone,nickName,profileImage, role, status})
         .then((data) =>{
             if(data){
                 res.status(200).json({message: `User edited succesfully with id: ${id}`})
@@ -76,8 +87,8 @@ const patchUser = (req, res) => {
 
 const patchMyUser = (req, res) => {
     const id = req.user.id
-    const { firstName, lastName, gender, birthday } = req.body
-    userControllers.updateUser(id, {firstName, lastName, gender, birthday})
+    const { firstName, lastName, email,gender, birthday,country,phone,nickName,profileImage,role,status } = req.body
+    userControllers.updateUser(id, {firstName, lastName,email, gender, birthday,country,phone,nickName,profileImage,role,status})
         .then(() => {
             res.status(200).json({message: 'Your user was edited succesfully!'})
         })

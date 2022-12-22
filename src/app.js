@@ -8,7 +8,8 @@ const db = require('./utils/database')
 const initModels = require('./models/initModels')
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
-
+const postsRouter=require('./posts/posts.router')
+const followsRouter=require('./follows/follows.router')
 //? Initial Configs
 
 const app = express()
@@ -40,9 +41,11 @@ app.get('/', (req, res) => {
     })
 })
 
+
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
-
+app.use('/api/v1/posts',postsRouter)
+app.use('/api/v1',followsRouter)
 
 app.listen(config.api.port, () => {
     console.log(`Server started on ${config.api.host}`)
