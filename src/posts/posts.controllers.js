@@ -52,15 +52,7 @@ const deletePost=async(id)=>{
     return data
 }
 
-// My Posts
-const findMyPosts=async(userId)=>{
-    const data =await Posts.findAll({
-        where:{
-            userId:userId
-        }
-    })
-    return data
-}
+
 
 // Posts User by Id
 const findPostsUserById=async(id)=>{
@@ -76,7 +68,6 @@ const findPostsUserById=async(id)=>{
 module.exports={
     findAllPosts,
     findPostbyId,
-    findMyPosts,
     findPostsUserById,
     createPost,
     updatePost,

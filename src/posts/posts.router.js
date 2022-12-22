@@ -19,9 +19,6 @@ router.route('/:id/likes')
     .get(likesServices.getAllLikesFromPost)
     .post(passportJWT.authenticate('jwt',{session:false}),likesServices.postLikes)
 
-router.route('/me')
-    .get(passportJWT.authenticate('jwt',{session:false}),postServices.getMyPosts)
-
 router.route('/user/:id')
     .get(passportJWT.authenticate('jwt',{session:false}),postServices.getPostsUserById)
 

@@ -38,10 +38,11 @@ const findMyFollowers=async(userId)=>{
         },
         include:{
             model:Users,
-            attributes:['id','firstName','lastName']
+            attributes:['id','firstName','lastName'],
+            as:"followers"
         }
     })
-    return data.map(item=>item.user)
+    return data.map(item=>item.followers)
 }
 
 const findMyFollowings=async(userId)=>{
@@ -52,11 +53,12 @@ const findMyFollowings=async(userId)=>{
         },
         include:{
             model:Users,
-            attributes:['id','firstName','lastName']
+            attributes:['id','firstName','lastName'],
+            as:"following"
         }
     })
                
-    return data.map(item=>item.user)
+    return data.map(item=>item.following)
     
   
 }

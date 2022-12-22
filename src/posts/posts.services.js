@@ -96,19 +96,6 @@ const deletePost=(req,res)=>{
     })
 }
 
-// Get my posts
-const getMyPosts=(req,res)=>{
-     const userId=req.user.id
-     postsControllers.findMyPosts(userId)
-    .then(data=>{
-        res.status(200).json(data)
-    })
-    .catch(err=>{
-        res.status(400).json({
-            message:err.message
-        })
-    })
-}
 
 // Posts User by Id
 const getPostsUserById=(req,res)=>{
@@ -134,13 +121,10 @@ const getPostsUserById=(req,res)=>{
 }
 
 
-
-
 module.exports={
     getAllPosts,
     getPostById,
     getPostsUserById,
-    getMyPosts,
     postNewPost,
     patchPost,
     deletePost
