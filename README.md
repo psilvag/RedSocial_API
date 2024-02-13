@@ -1,38 +1,32 @@
-Url base: http://localhost:9000/api/v1
+<p align="center">
+  <a href="https://nodejs.org/api/https.html" target="blank"><img src="./assets/node.png" width="500" alt="Node Logo" /></a>
+</p>
 
-/auth
-/login -> Login con las credenciales del usuario para autenticar
+# Red Social API
+1. Clonar el repositorio
+2. Instalar la dependencias
+```
+npm install
+```
+3. Copiar el archivo .env.template y renombrarlo como .env
+4. Llenar las variables de entorno en funcion a la aplicacion
+5. Levantar la base de datos en docker
+```
+docker compose up -d
+```
+6. Ejecutar la aplicacion en desarrollo
+```
+npm run dev
+```
 
+Nota: Para levantar el contenedor docker de Postgres es necesario tener instalado Docker en su PC y luego ejecutar el programa. 
 
-/posts
+Docker para Windows:
+```
+https://docs.docker.com/desktop/install/windows-install/
+```
 
-/me -> Mis propias publicaciones
-/user/:id -> Publicaciones de usuarios en particular
-/:id -> Una publicación en especifico
-/:id/comments -> Los comentarios de una publicación en especifico
-/:id/likes -> Los likes de una publicación en especifico
-
-
-/users
-/me -> Mi informacion de usuario
-/:id -> Un usuario en especifico
-/:id/follow->Seguir a un usuario
-
-
-/follows
-/followers
-
-
-Controllers Posts
- findAllPosts
- findPostById
- createPost
- updatePost
- removePost
- 
-Services Posts
- getAllPosts
- getPostById
- postNewPost
- patchPost
- deletePost
+Docker para Linux:
+```
+https://docs.docker.com/engine/install/ubuntu/
+```

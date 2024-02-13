@@ -3,18 +3,13 @@ const Users=require('../models/users.models')
 const uuid=require('uuid')
 
 
-
-
 const createCommentInPost=async(obj)=>{
     const data= await Comments.create({
         id:uuid.v4(),
         userId:obj.userId,
         postId:obj.postId,
-        content:obj.content,
-        include:{
-            model:Users,
-            attributes:['firstName','lastName']
-        }
+        content:obj.content
+      
     })
     return data
 }

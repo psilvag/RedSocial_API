@@ -5,7 +5,7 @@ const jwtSecret = require('../../config').api.jwtSecret
 const mailer=require('../utils/mailer')
 const config=require('../../config')
 
-
+// LOGIN SERVICES
 const postLogin = (req, res) => {
     const {email, password} = req.body
 
@@ -30,7 +30,8 @@ const postLogin = (req, res) => {
             .catch((err) => {
                 res.status(400).json({message: err.message})
             })
-    } else {
+    } 
+    else {
         res.status(400).json({message: 'Missing Data', fields: {
             email: 'example@example.com',
             password: "string"

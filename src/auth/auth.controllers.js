@@ -3,6 +3,8 @@ const { comparePassword, hashPassword } = require('../utils/crypto')
 const RecoveryPassword=require('../models/recoveryPasswords.models')
 const uuid=require('uuid')
 
+
+// LOGIN 
 const checkUsersCredentials = async (email, password) => {
     try {
         const user = await findUserByEmail(email)
@@ -16,7 +18,7 @@ const checkUsersCredentials = async (email, password) => {
         return error
     }
 }
-
+// RECOVERY PASSWORD
 const createRecoveryToken= async(email)=>{
     try{
         const user=await findUserByEmail(email)
@@ -30,7 +32,7 @@ const createRecoveryToken= async(email)=>{
         return null
     }
 }
-
+// CHANGE PASSWORD
 const changePassword=async(idRecoveryPassword,newPassword)=>{
       const recoveryData=await RecoveryPassword.findOne({
         where:{

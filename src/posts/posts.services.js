@@ -61,7 +61,7 @@ const patchPost=(req,res)=>{
             res.status(200).json({message:`Post ${id} updated succesfuly`})
         }
         else{
-            res.status(400).json({
+            res.status(404).json({
             message:`Invalid ID`
         }) 
         }

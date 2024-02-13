@@ -49,6 +49,7 @@ const createUser = async (obj) => {
         phone:obj.phone,
         nickName:obj.nickName,
         profileImage:obj.profileImage
+    
     })
     return data
 }
