@@ -19,7 +19,7 @@ router.route('/:id/likes')
     .get(likesServices.getAllLikesFromPost)
     .post(passportJWT.authenticate('jwt',{session:false}),likesServices.postLikes)
 
-router.route('/user/:id') // revisar 
+router.route('/user/:id') 
     .get(passportJWT.authenticate('jwt',{session:false}),postServices.getPostsUserById)
 
 router.route('/:id/comments')
